@@ -85,7 +85,7 @@ bool render::game(const snake& game, unsigned short max_score) {
     auto size_term = this->_terminal_size();
     auto width = game.get_width(); 
     width += SIZE_TABLE_SCORE;
-    auto height = game.get_height();
+    auto height = game.get_height() * 2;
   
     int y = size_term.first / 2 - (width + 4) / 2;
     int x = size_term.second / 2 - height / 2;
@@ -112,17 +112,17 @@ bool render::game(const snake& game, unsigned short max_score) {
     this->_color.set_color(COLOR::DEFAULT);
     
     y += SIZE_TABLE_SCORE + FRAME_SIZE;
-    this->_table(y, x, game.get_width(), game.get_height());
+    this->_table(y, x, game.get_width(), game.get_height() * 2);
     auto snake_arr = game.arr_snake();
     this->_color.set_color(COLOR::BACKGROUND_GREEN);
     for (int i = 0; i < snake_arr.size(); i++) {
-        move(y + snake_arr[i].first, x + snake_arr[i].second);
-        printw("%c", i + 1 != snake_arr.size() ? ' ' : '&');
+        move(y + snake_arr[i].first, x + snake_arr[i].second * 2);
+        printw("%s", i + 1 != snake_arr.size() ? "  " : "  ");
     }
     auto apple = game.apple();
     this->_color.set_color(COLOR::BACKGROUND_RED);
-    move(y + apple.first, x + apple.second);
-    printw(" ");
+    move(y + apple.first, x + apple.second * 2);
+    printw("  ");
     this->_color.set_color(COLOR::DEFAULT);
     refresh();
     return true;

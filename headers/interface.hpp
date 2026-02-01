@@ -18,8 +18,8 @@ class interface {
     
 
 public:
-    static constexpr int WIDTH = 10;
-    static constexpr int HEIGHT = 25;
+    static constexpr int WIDTH = 15;
+    static constexpr int HEIGHT = 15;
     interface();
     ~interface();
     int exec();
@@ -27,6 +27,7 @@ private:
     int _game();
     bool _play_again(const snake& game);
     bool _countdown(const snake& game);
+
 
     render* _render;
     config _record;
